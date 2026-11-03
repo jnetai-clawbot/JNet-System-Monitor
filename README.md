@@ -8,7 +8,7 @@ Package name: `com.jnet.systemmonitor`
 
 - **Created By:** J~Net 2026
 - **Website:** [jnetai.com](https://jnetai.com)
-- **Version:** v1.0.0 (GitHub tag in full)
+- **Version:** v1.0.1 (GitHub tag in full)
 
 ## Features
 
@@ -78,8 +78,8 @@ Gradle build. Every build, test and APK package step runs on GitHub-hosted
 ## Download a released APK
 
 1. Open the repository's **Releases** page.
-2. Pick the latest version (for example `v1.0.0`).
-3. Download `JNet-System-Monitor-v1.0.0-release-signed.apk` or the
+2. Pick the latest version (for example `v1.0.1`).
+3. Download `JNet-System-Monitor-v1.0.1-release-signed.apk` or the
    `debug-signed` variant if no release keystore was configured.
 
 ## Install the APK on Android

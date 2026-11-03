@@ -7,6 +7,7 @@ import androidx.compose.animation.core.infiniteRepeatable
 import androidx.compose.animation.core.rememberInfiniteTransition
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -41,6 +42,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
@@ -252,10 +254,15 @@ private fun BatteryCard(info: SystemInfo) {
 
 @Composable
 private fun AboutCard(info: SystemInfo) {
+    val uriHandler = LocalUriHandler.current
     MonitorCard(title = "About") {
         InfoRow("Version", "v${info.appVersion}")
         InfoRow("Created By", "J~Net 2026")
-        InfoRow("Website", "jnetai.com")
+        InfoRow(
+            label = "Website",
+            value = "jnetai.com",
+            onClick = { uriHandler.openUri("https://jnetai.com") }
+        )
         InfoRow("Package", "com.jnet.systemmonitor")
     }
 }
@@ -283,7 +290,7 @@ private fun MonitorCard(title: String, content: @Composable ColumnScope.() -> Un
 }
 
 @Composable
-private fun InfoRow(label: String, value: String) {
+private fun InfoRow(label: String, value: String, onClick: (() -> Unit)? = null) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -298,13 +305,21 @@ private fun InfoRow(label: String, value: String) {
         )
         Text(
             text = value,
-            color = TextPrimary,
+            color = if (onClick != null) Accent else TextPrimary,
             fontSize = 13.sp,
             fontWeight = FontWeight.Medium,
             textAlign = TextAlign.End,
             maxLines = 2,
             overflow = TextOverflow.Ellipsis,
-            modifier = Modifier.weight(1.4f)
+            modifier = Modifier
+                .weight(1.4f)
+                .then(
+                    if (onClick != null) {
+                        Modifier.clickable { onClick() }
+                    } else {
+                        Modifier
+                    }
+                )
         )
     }
 }
