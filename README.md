@@ -1,5 +1,7 @@
 # J~Net System Monitor
 
+**Repository:** https://github.com/jnetai-clawbot/JNet-System-Monitor
+
 A compact, dark Android system-monitoring dashboard built with Kotlin and Jetpack Compose.
 
 Package name: `com.jnet.systemmonitor`
